@@ -11,8 +11,13 @@ echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 echo 1 > /proc/sys/net/ipv6/conf/default/disable_ipv6
 
 # sync with time server
-#ntpdate pool.ntp.org
-ntpdate timeserver.svl.ibm.com
+HOST="$(/bin/hostname -f)"
+if [[ $HOST == *"svl.ibm.com"* ]]
+then
+  ntpdate timeserver.svl.ibm.com;
+else
+  ntpdate pool.ntp.org;
+fi
 service ntpd start
 
 # start ssh server
