@@ -25,10 +25,16 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
     platform='osx'   
 fi
 
+## build docker image
 if [[ $platform == 'osx' ]]; then
   docker rmi -f ambari:1.7
   docker build --rm --no-cache -t ambari:1.7 ./ambari/.
+  docker run -d --privileged=true -P -p 11000:11000 -p 2122:2122 -p 50010:50010 -p 50020:50020 -p 50030:50030 -p 50070:50070 -p 50075:50075 -p 50090:50090 -p 50111:50111 -p 8000:8000 -p 8020:8020 -p 8021:8021 -p 8081:8081 -p 8088:8088 -p 8440:8440 -p 8043:8043 -p 8441:8441 -p 8670:8670 -p 8888:8888 --name ambari -h ambari.luck.com ambari:1.7 /etc/bootstrap.sh -d
 else
   sudo docker rmi -f ambari:1.7
   sudo docker build --rm --no-cache -t ambari:1.7 ./ambari/.
+  sudo docker run -d --privileged=true -P -p 11000:11000 -p 2122:2122 -p 50010:50010 -p 50020:50020 -p 50030:50030 -p 50070:50070 -p 50075:50075 -p 50090:50090 -p 50111:50111 -p 8000:8000 -p 8020:8020 -p 8021:8021 -p 8081:8081 -p 8088:8088 -p 8440:8440 -p 8043:8043 -p 8441:8441 -p 8670:8670 -p 8888:8888 --name ambari -h ambari.luck.com ambari:1.7 /etc/bootstrap.sh -d
 fi
+
+## deploy ambari cluster using blueprint
+./ambari/opt/ambari-cluster/deploy_cluster.sh

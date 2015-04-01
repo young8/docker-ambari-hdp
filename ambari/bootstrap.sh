@@ -22,11 +22,6 @@ service sshd start
 /usr/sbin/ambari-server start
 
 #start ambari agent
-HOST_SERVER="$(netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}')"
-SERVER="$(/bin/hostname -i)"
-
-sed -i.bak "s@hostname=localhost@hostname=$SERVER@g" /etc/ambari-agent/conf/ambari-agent.ini && \
-cat /etc/ambari-agent/conf/ambari-agent.ini
 /usr/sbin/ambari-agent start
 
 echo "all boostrap commands executed"

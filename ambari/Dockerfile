@@ -8,7 +8,7 @@ USER root
 RUN yum clean all
 
 # ambari
-RUN cd /etc/yum.repos.d && curl -O curl -O http://public-repo-1.hortonworks.com/ambari/centos6/1.x/updates/1.7.0/ambari.repo > ambari.repo
+RUN cd /etc/yum.repos.d && curl --silent -O http://public-repo-1.hortonworks.com/ambari/centos6/1.x/updates/1.7.0/ambari.repo > ambari.repo
 
 # ambari server setup
 RUN yum -y install ambari-server

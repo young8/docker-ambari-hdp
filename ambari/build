@@ -22,7 +22,7 @@ if [[ "$unamestr" == 'Linux' ]]; then
 elif [[ "$unamestr" == 'FreeBSD' ]]; then
    platform='freebsd'
  elif [[ "$unamestr" == 'Darwin' ]]; then
-    platform='osx'   
+    platform='osx'
 fi
 
 if [[ $platform == 'osx' ]]; then
