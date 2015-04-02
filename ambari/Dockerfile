@@ -1,4 +1,4 @@
-FROM ambari:centos
+FROM lresende/ambari-node:1.0
 
 MAINTAINER Luciano Resende <lresende@apache.org>
 
